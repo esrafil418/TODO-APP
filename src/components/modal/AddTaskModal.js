@@ -84,7 +84,7 @@ export function AddTaskModal(onSubmit) {
                 placeholder: "Deadline",
                 dataset: {
                   jdp: "",
-                  jdpMinDate: "today",
+                  jdpMinDate: "today", //todo => don't work (fix it later)
                 },
                 className:
                   "border border-gray-300 rounded-md p-2 focus:outline-[#6200ea] text-center text-red-700 font-bold",

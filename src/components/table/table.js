@@ -1,5 +1,5 @@
 import { El } from "../../utils/el";
-import { loadTasks } from "../../modules/storage";
+import { loadTasks, saveTask, removeTask } from "../../modules/storage";
 
 export function Table() {
   const table = El({
@@ -74,6 +74,10 @@ export function Table() {
                   element: "i",
                   className:
                     "fa-solid fa-trash bg-[#dc3545] text-white text-sm py-2 px-3 rounded-md",
+                  onclick: () => {
+                    removeTask(task.id);
+                    row.remove();
+                  },
                 }),
               ],
             }),
@@ -91,7 +95,6 @@ export function Table() {
             }),
             El({
               element: "button",
-
               className: "cursor-pointer",
               children: [
                 El({
