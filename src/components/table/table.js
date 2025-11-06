@@ -1,5 +1,6 @@
 import { El } from "../../utils/el";
 import { loadTasks, saveTask, removeTask } from "../../modules/storage";
+import { getStatusColor, getPriorityColor } from "../../utils/colorUtils";
 
 export function Table() {
   const table = El({
@@ -45,14 +46,16 @@ export function Table() {
         El({
           element: "td",
           innerText: task.priority,
-          className:
-            "p-2 border border-r-gray-300 border-l-gray-300 border-t-gray-300 border-b-gray-300",
+          className: `p-2 border border-r-gray-300 border-l-gray-300 border-t-gray-300 border-b-gray-300 ${getPriorityColor(
+            task.priority
+          )}`,
         }),
         El({
           element: "td",
           innerText: task.status,
-          className:
-            "p-2 border border-r-gray-300 border-l-gray-300 border-t-gray-300 border-b-gray-300",
+          className: `p-2 border border-r-gray-300 border-l-gray-300 border-t-gray-300 border-b-gray-300 ${getStatusColor(
+            task.status
+          )}`,
         }),
         El({
           element: "td",
@@ -85,6 +88,18 @@ export function Table() {
               element: "button",
 
               className: "cursor-pointer",
+              onclick: () => {
+                const modal = document.getElementById("taskModal");
+                modal.classList.remove("hidden");
+
+                document.getElementById("taskName").value = task.taskName;
+                document.getElementById("priority").value = task.priority;
+                document.getElementById("status").value = task.status;
+                document.getElementById("deadline").value = task.deadline;
+                document.getElementById("details").value = task.details || "";
+
+                modal.setAttribute("data-edit-id", task.id);
+              },
               children: [
                 El({
                   element: "i",

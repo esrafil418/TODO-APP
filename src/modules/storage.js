@@ -15,3 +15,12 @@ export function removeTask(id) {
   tasks = tasks.filter((task) => task.id !== id);
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
+
+export function updateTask(updatedTask) {
+  let tasks = JSON.parse(localStorage.getItem("notes")) || [];
+  const index = tasks.findIndex((t) => t.id == updatedTask.id);
+  if (index !== -1) {
+    tasks[index] = updatedTask;
+    localStorage.setItem("notes", JSON.stringify(tasks));
+  }
+}
