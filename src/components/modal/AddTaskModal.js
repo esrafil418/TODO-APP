@@ -105,6 +105,7 @@ export function AddTaskModal(onSubmit) {
               }),
               El({
                 element: "button",
+                id: "addTask",
                 type: "submit",
                 innerText: "Add Task",
                 className:

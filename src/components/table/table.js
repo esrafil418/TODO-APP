@@ -12,6 +12,7 @@ export function Table() {
         element: "thead",
         children: [
           El({
+            // creat a row
             element: "tr",
             className: "text-black",
             children: ["Task", "Priority", "Status", "Deadline", "Actions"].map(
@@ -67,11 +68,10 @@ export function Table() {
           element: "td",
           className: "p-2 flex gap-1 justify-center items-center ",
           children: [
+            // remove button
             El({
               element: "button",
-
               className: "cursor-pointer",
-              onclick: () => row.remove(),
               children: [
                 El({
                   element: "i",
@@ -84,19 +84,29 @@ export function Table() {
                 }),
               ],
             }),
+            // edite task
             El({
               element: "button",
-
               className: "cursor-pointer",
               onclick: () => {
                 const modal = document.getElementById("taskModal");
                 modal.classList.remove("hidden");
-
+                document.getElementById("addTask").innerText = "Update Task";
                 document.getElementById("taskName").value = task.taskName;
                 document.getElementById("priority").value = task.priority;
                 document.getElementById("status").value = task.status;
                 document.getElementById("deadline").value = task.deadline;
                 document.getElementById("details").value = task.details || "";
+                [
+                  "taskName",
+                  "priority",
+                  "status",
+                  "deadline",
+                  "details",
+                ].forEach((id) => {
+                  document.getElementById(id).readOnly = false;
+                  document.getElementById(id).disabled = false;
+                });
 
                 modal.setAttribute("data-edit-id", task.id);
               },
@@ -111,6 +121,23 @@ export function Table() {
             El({
               element: "button",
               className: "cursor-pointer",
+              onclick: () => {
+                const modal = document.getElementById("taskModal");
+                modal.classList.remove("hidden");
+
+                document.getElementById("taskName").value = task.taskName;
+                document.getElementById("priority").value = task.priority;
+                document.getElementById("status").value = task.status;
+                document.getElementById("deadline").value = task.deadline;
+                document.getElementById("details").value = task.details || "";
+
+                // read only
+                document.getElementById("taskName").readOnly = true;
+                document.getElementById("priority").disabled = true;
+                document.getElementById("status").disabled = true;
+                document.getElementById("deadline").disabled = true;
+                document.getElementById("details").readOnly = true;
+              },
               children: [
                 El({
                   element: "i",
