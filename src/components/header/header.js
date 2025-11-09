@@ -8,7 +8,7 @@ export function Header() {
     children: [
       El({
         element: "div",
-        className: "flex gap-1 sm:gap-2 lg:gap-2",
+        className: "flex gap-2 flex",
         children: [
           El({
             element: "img",
@@ -18,8 +18,14 @@ export function Header() {
           El({
             element: "div",
             className:
-              "text-white sm:text-sm md:text-[16px] lg:text-lg mx-4 lg:mx-1",
-            innerText: "My To-Do Tasks",
+              " text-lg xl:text-xl lg:mx-1 flex justify-center items-center",
+            children: [
+              El({
+                element: "p",
+                className: "text-white",
+                innerText: "My To-Do Tasks",
+              }),
+            ],
           }),
         ],
       }),
@@ -29,7 +35,8 @@ export function Header() {
         children: [
           El({
             element: "div",
-            className: "flex hidden lg:block md:block",
+            className:
+              "flex justify-center items-center hidden lg:flex md:flex",
             children: [
               El({
                 element: "div",
