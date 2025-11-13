@@ -1,5 +1,5 @@
 import { El } from "../../utils/el";
-import { loadTasks, saveTask, removeTask } from "../../modules/storage";
+import { loadTasks, removeTask } from "../../modules/storage";
 import { getStatusColor, getPriorityColor } from "../../utils/colorUtils";
 import { viewTaskModal } from "../modal/viewTaskModal";
 
@@ -7,7 +7,7 @@ export function Table() {
   const table = El({
     element: "table",
     id: "taskTable",
-    className: "w-full border-collapse table-fixed",
+    className: "w-full border-collapse",
     children: [
       El({
         element: "thead",
@@ -82,8 +82,10 @@ export function Table() {
             El({
               element: "div",
               innerText: task.deadline,
-              className:
-                "border rounded-full border-blue-400 text-center inline-block p-1 md:px-2",
+              className: ` ${
+                task.deadline ? "border border-blue-400 rounded-full" : "-"
+              }
+                text-center inline-block p-1 md:px-2`,
             }),
           ],
         }),
